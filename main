@@ -3,14 +3,10 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 
-API_BOT='8292293542:AAELd1xl3aVSnXNkZE03D-jBY0VSyVIQ1B0'
+API_BOT = '8292293542:AAELd1xl3aVSnXNkZE03D-jBY0VSyVIQ1B0'
 
 bot = Bot(API_BOT)
-dp - Dispatcher()
-async def main():
-    print("bot start")
-    await dp.start_polling(bot)
-
+dp = Dispatcher()  # Исправлено: = вместо -
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
@@ -18,7 +14,11 @@ async def cmd_start(message: Message):
 
 @dp.message(Command('help'))
 async def cmd_help(message: Message):
-    await message.anwer("я готов помогать")
+    await message.answer("я готов помогать")  # Исправлено: answer вместо anwer
 
-if__name__ == '__main__':
-   asyncio.run(main())
+async def main():
+    print("bot start")
+    await dp.start_polling(bot)
+
+if __name__ == '__main__':  # Исправлено: добавлен пробел
+    asyncio.run(main())

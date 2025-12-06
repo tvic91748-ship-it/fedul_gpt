@@ -1,8 +1,24 @@
-import telebot
-bot = telebot.TeleBot('8292293542:AAELd1xl3aVSnXNkZE03D-jBY0VSyVIQ1B0')
+import asyncio
+from aiogram import Bot, Dispatcher
+from aiogram.types import Message
+from aiogram.filters import CommandStart, Command
 
-@bot.message_handler(comamands=['start'])
-def send_welcome(message):
-    bot.reply_to(message, "текст")
+API_BOT='8292293542:AAELd1xl3aVSnXNkZE03D-jBY0VSyVIQ1B0'
 
-bot.polling()
+bot = Bot(API_BOT)
+dp - Dispatcher()
+async def main():
+    print("bot start")
+    await dp.start_polling(bot)
+
+
+@dp.message(CommandStart())
+async def cmd_start(message: Message):
+    await message.answer("привет я простая нейросеть созданая тиктокером под юзом fedul_228")
+
+@dp.message(Command('help'))
+async def cmd_help(message: Message):
+    await message.anwer("я готов помогать")
+
+if__name__ == '__main__':
+   asyncio.run(main())

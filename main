@@ -6,19 +6,92 @@ from aiogram.filters import CommandStart, Command
 API_BOT = '8292293542:AAELd1xl3aVSnXNkZE03D-jBY0VSyVIQ1B0'
 
 bot = Bot(API_BOT)
-dp = Dispatcher()  # Исправлено: = вместо -
+dp = Dispatcher()  
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
-    await message.answer("привет я простая нейросеть созданая тиктокером под юзом fedul_228")
+    await message.answer(
+        "👋привет👋 я простая нейросеть я была создана 6 декабря 2025\n\n"
+        "Язык программирования python\n\n"
+        "💸 поддержать проект ссылка (https://dalink.to/meme_studio) 💸\n\n"
+        "📱 реклама 📱 @fedul_help_bot"
+    )
 
 @dp.message(Command('help'))
 async def cmd_help(message: Message):
-    await message.answer("я готов помогать")  # Исправлено: answer вместо anwer
+    await message.answer("напишите в поддержку @fedul_help_bot если нашли ошибку или хотите добавить новые слова для нейросети")  
+
+@dp.message()
+async def handle_text(message: Message):
+    if not message.text:
+        return
+
+    text_lower = message.text.lower()
+
+    # Проверяем "пр" в тексте
+    if "пр" in text_lower:
+        await message.answer("Привет!")
+        return  # Важно: return после ответа
+
+    # Проверяем "что д" в тексте
+    if "что д" in text_lower:
+        await message.answer("Разговариваю с тобой")
+        return
+
+    if "как д" in text_lower:
+      await message.answer("Прекрасно, особено когда есть пельмени")
+      return
+
+    if "маин" in text_lower:
+      await message.answer("Эх маинкрафт легендарная игра наших времен")
+      return
+
+    if "лего" in text_lower:
+      await message.answer("Прикольный конструктр")
+      return
+
+    if "кто ты" in text_lower:
+          await message.answer("Я простая нейросеть, созданная 6 декабря 2025 года!")
+          return
+
+    if "что ты ум" in text_lower:
+          await message.answer("Я умею общаться, отвечать на вопросы и помогать с простыми задачами!")
+          return
+
+    if "ты жив" in text_lower:
+          await message.answer("Нет, я искусственный интеллект, но стараюсь быть полезным!")
+          return
+
+    if "где ты" in text_lower:
+          await message.answer("Я нахожусь в цифровом пространстве!")
+          return
+
+    if "лох" in text_lower:
+          await message.answer("В зеркало посмотри")
+          return
+
+    if "ты гей" in text_lower:
+          await message.answer("Нет, я не гей, я нейросеть!")
+          return
+
+    if "ты осуждаешь н" in text_lower:
+          await message.answer("Нет, страные у тебя вопросы🤨")
+          return
+
+    if "егор н" in text_lower:
+          await message.answer("Да")
+          return
+
+    if "финики" in text_lower:
+          await message.answer("кушай финики")
+          return
+
+    # Если ни одно условие не сработало
+    await message.answer(f"брат я не понял что ты написал попробуй написать чтото другое или обратись в поддержку /help")
 
 async def main():
     print("bot start")
     await dp.start_polling(bot)
 
-if __name__ == '__main__':  # Исправлено: добавлен пробел
+if __name__ == '__main__':  
     asyncio.run(main())
